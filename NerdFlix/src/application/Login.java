@@ -3,6 +3,7 @@ package application;
 import javax.swing.JOptionPane;
 
 import application.template.NerdFlixApplication;
+import application.view.SelectPageView;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -166,7 +167,7 @@ public class Login extends NerdFlixApplication {
 //                t.consume();
 //                persistence.dominio.Banco.closeInstance();
 //                stage.close();
-//                System.exit(0);
+//                System.exit(SUCCESSFUL_EXIT);
 //            }
 //        });
 	}
@@ -205,17 +206,17 @@ public class Login extends NerdFlixApplication {
 	}
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void startEspecifico(Stage primaryStage) {
 		try {
 			initComponents();
 			
 			Scene scene = new Scene(anchorPane);
-//			scene.getStylesheets().add("resources/css/Login.css");
+			scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+			anchorPane.getStyleClass().add("background");
 			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
 			primaryStage.setTitle("Login - NerdFlix");
 			primaryStage.show();
-						
+
 			initLayout();
 
 			Login.stage = primaryStage;
@@ -228,5 +229,4 @@ public class Login extends NerdFlixApplication {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }
