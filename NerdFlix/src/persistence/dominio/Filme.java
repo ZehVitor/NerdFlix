@@ -24,7 +24,7 @@ public class Filme implements Serializable {
 	@Column(name="id_filme")
 	private int id;
 	
-	private String tiulo;
+	private String titulo;
 	private String sinopse;
 	private String genero;
 	private String resolucao;
@@ -36,11 +36,11 @@ public class Filme implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTiulo() {
-		return tiulo;
+	public String getTitulo() {
+		return titulo;
 	}
-	public void setTiulo(String tiulo) {
-		this.tiulo = tiulo;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	public String getSinopse() {
 		return sinopse;
