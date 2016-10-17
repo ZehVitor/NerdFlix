@@ -2,9 +2,14 @@
     -fx-background-color: #1d1d1d;
 }
 
+@font-face {
+	font-family: "Graphique W01 Regular";
+	src: url("Graphique W01 Regular.ttf");
+}
+
 .nerdflix {
 	fx-font-family: "Graphique W01 Regular";
-	-fx-font-size: 44px;
+	-fx-font-size: 48px;
 }
 
 .label {
