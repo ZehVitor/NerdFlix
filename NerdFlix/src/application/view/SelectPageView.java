@@ -72,7 +72,7 @@ public class SelectPageView extends NerdFlixApplication {
 	private void handleUploadButton(){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Videos File");
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb", "*.mkv"));
 		 File selectedFile = fileChooser.showOpenDialog(stage);
 		 if (selectedFile != null) {
 			 JOptionPane.showMessageDialog(null, selectedFile.getName() + " - adicionado com sucesso!");

@@ -58,11 +58,11 @@ public class Login extends NerdFlixApplication {
 		FAILED_EXIT = 1;
 		WIDTH = 400;
 		FAREWELL_MESSAGE = "Bye!";
-		FAILED_LOGIN_MESSAGE = "Login ou Senha inválidos!";
+		FAILED_LOGIN_MESSAGE = "Login ou Senha invï¿½lidos!";
 		
 		persistence.dominio.Banco.getInstance();
 		
-//		------------------------------------Inserts para Criação do banco--------------------------
+//		------------------------------------Inserts para Criaï¿½ï¿½o do banco--------------------------
 //		Usuario u = new Usuario();
 //		Filme f = new Filme();
 //		Serie s = new Serie();
@@ -72,19 +72,19 @@ public class Login extends NerdFlixApplication {
 //		u.setLogin("");
 //		u.setSenha("123");
 		
-//		f.setTiulo("Os intocáveis");
+//		f.setTiulo("Os intocï¿½veis");
 //		f.setDuracao(120);
-//		f.setGenero("Ação");
+//		f.setGenero("Aï¿½ï¿½o");
 //		f.setResolucao("HD");
-//		f.setSinopse("Descrição de Os intocáveis.");
+//		f.setSinopse("Descriï¿½ï¿½o de Os intocï¿½veis.");
 //		
 //		s.setTiulo("Game of Thrones");
 //		s.setDuracao(50);
-//		s.setGenero("Épico");
+//		s.setGenero("ï¿½pico");
 //		s.setResolucao("Full HD");
-//		s.setSinopse("Há muito tempo, em um tempo esquecido, uma força destruiu o equilíbrio das estações." +
-//		"Em uma terra onde os verões podem durar vários anos e o inverno toda uma vida, as reivindicações " + 
-//		"e as forças sobrenaturais correm as portas do Reino dos Sete Reinos.");
+//		s.setSinopse("Hï¿½ muito tempo, em um tempo esquecido, uma forï¿½a destruiu o equilï¿½brio das estaï¿½ï¿½es." +
+//		"Em uma terra onde os verï¿½es podem durar vï¿½rios anos e o inverno toda uma vida, as reivindicaï¿½ï¿½es " + 
+//		"e as forï¿½as sobrenaturais correm as portas do Reino dos Sete Reinos.");
 //		s.setEpisodio(1);
 //		s.setTemporada(1);
 //		
