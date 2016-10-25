@@ -1,7 +1,5 @@
 package persistence.dao;
 
-import java.io.ObjectStreamClass;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -44,6 +42,7 @@ public class GenericDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> Object findById (int id, Class<T> objClass) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		EntityManager em = getEntityManager();
 		T obj = (T) Class.forName(objClass.getName()).newInstance();

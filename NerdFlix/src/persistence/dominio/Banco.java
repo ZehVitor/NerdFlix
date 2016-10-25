@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 public class Banco {
 	private static EntityManager em;
+	private static Usuario currentUser;
 
 	public static EntityManager getInstance(){
 		if (em == null) {
@@ -27,5 +28,13 @@ public class Banco {
 		if (em != null && em.isOpen()) {
 			em.close();	
 		}
+	}
+	
+	public static Usuario getCurrentUser(){
+		return currentUser;
+	}
+	
+	public static void setCurrentUser(Usuario cUser) {
+		currentUser = cUser;
 	}
 }

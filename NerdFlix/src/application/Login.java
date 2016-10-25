@@ -46,16 +46,11 @@ public class Login extends NerdFlixApplication {
 	private String FAREWELL_MESSAGE;
 	private String FAILED_LOGIN_MESSAGE;
 	
-	private int SUCCESSFUL_EXIT;
-	private int FAILED_EXIT;
-
 	public double middleCordinates(double componentWidth, double anchorPaneWidth) {
 		return ((anchorPaneWidth - componentWidth) / 2);
 	}
 
 	private void initComponents() {
-		SUCCESSFUL_EXIT = 0;
-		FAILED_EXIT = 1;
 		WIDTH = 400;
 		FAREWELL_MESSAGE = "Bye!";
 		FAILED_LOGIN_MESSAGE = "Login ou Senha inválidos!";
@@ -160,16 +155,6 @@ public class Login extends NerdFlixApplication {
 	            }
 	        }
 	    });
-		
-//		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//            @Override
-//            public void handle(WindowEvent t) {
-//                t.consume();
-//                persistence.dominio.Banco.closeInstance();
-//                stage.close();
-//                System.exit(SUCCESSFUL_EXIT);
-//            }
-//        });
 	}
 	
 	private void logar(){
@@ -188,11 +173,11 @@ public class Login extends NerdFlixApplication {
 		
 		if (user != null && user.getLogin().equalsIgnoreCase(login) && user.getSenha().equals(password)) {
 			try {
+				Banco.setCurrentUser(user);
 				new SelectPageView().start(new Stage());
 				Login.stage.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.exit(FAILED_EXIT);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, FAILED_LOGIN_MESSAGE);
@@ -202,7 +187,7 @@ public class Login extends NerdFlixApplication {
 	private void fecharAplicacao(){
 		JOptionPane.showMessageDialog(null, FAREWELL_MESSAGE);
 		persistence.dominio.Banco.closeInstance();
-		System.exit(SUCCESSFUL_EXIT);
+		System.exit(0);
 	}
 	
 	@Override

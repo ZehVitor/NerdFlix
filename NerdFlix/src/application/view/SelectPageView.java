@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import application.Login;
 import application.Main;
 import application.template.NerdFlixApplication;
 import javafx.application.Application;
@@ -15,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -23,7 +25,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import persistence.dao.GenericDAO;
+import persistence.dominio.Banco;
 import persistence.dominio.Filme;
+import persistence.dominio.Usuario;
 
 public class SelectPageView extends NerdFlixApplication {
 	private static Stage stage;
@@ -32,6 +37,9 @@ public class SelectPageView extends NerdFlixApplication {
 
 	@FXML
 	private TextField pesquisaTextField;
+	
+	@FXML
+	private Button uploadBT;
 	
 	@Override
 	public void startEspecifico(Stage primaryStage) {
@@ -53,26 +61,37 @@ public class SelectPageView extends NerdFlixApplication {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/PageView.fxml"));
             ScrollPane pageView = (ScrollPane) loader.load();
-
             root.setCenter(pageView);
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 	
 	@FXML
-	private void handleSairButton(){
-		persistence.dominio.Banco.closeInstance();
-        stage.close();
-        System.exit(0);
+	private void initialize(){
+		Usuario u = new Usuario();
+		u = Banco.getCurrentUser();
+		
+		if (u.getLogin().equalsIgnoreCase("Admin")) {
+			this.uploadBT.setVisible(true);
+		}
+	}
+	
+	@FXML
+	private void handleVoltarButton(){
+		try {
+			new Login().start(new Stage());
+			SelectPageView.stage.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
 	private void handleUploadButton(){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Videos File");
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb", "*.mkv"));
 		 File selectedFile = fileChooser.showOpenDialog(stage);
 		 if (selectedFile != null) {
 			 JOptionPane.showMessageDialog(null, selectedFile.getName() + " - adicionado com sucesso!");
