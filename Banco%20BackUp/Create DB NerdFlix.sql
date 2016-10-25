@@ -6,6 +6,7 @@ CREATE DATABASE NerdFlixDB OWNER Admin;
 CREATE TABLE usuario (
     id_usuario SERIAL NOT NULL PRIMARY KEY,
     email varchar(255),
+	idade integer NOT NULL,
     login varchar(255) UNIQUE NOT NULL,
     nome varchar(255),
     senha varchar(255) NOT NULL
@@ -32,7 +33,7 @@ CREATE TABLE serie (
 );
 
 
-INSERT INTO usuario (id_usuario, email, login, nome, senha) VALUES (1, 'default@mail.com', 'admin', 'Administrador', '123');
-INSERT INTO usuario (id_usuario, email, login, nome, senha) VALUES (2, 'Outro@mail.com', 'ze', 'JVior', '123');
-INSERT INTO usuario (id_usuario, email, login, nome, senha) VALUES (3, 'Outro@mail.com', 'ed', 'Edye', '321');
-INSERT INTO usuario (id_usuario, email, login, nome, senha) VALUES (4, 'outro@mail.com', 'tay', 'Tayanne', '1234');
+INSERT INTO usuario (id_usuario, email, idade, login, nome, senha) VALUES (1, 'default@mail.com', 50, 'admin', 'Administrador', '123');
+INSERT INTO usuario (id_usuario, email, idade, login, nome, senha) VALUES (2, 'Outro@mail.com', 12, 'ze', 'JVior', '123');
+INSERT INTO usuario (id_usuario, email, idade, login, nome, senha) VALUES (3, 'Outro@mail.com', 20, 'ed', 'Edye', '321');
+INSERT INTO usuario (id_usuario, email, idade, login, nome, senha) VALUES (4, 'outro@mail.com', 17, 'tay', 'Tayanne', '1234');
