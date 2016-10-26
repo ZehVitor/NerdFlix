@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -35,8 +36,10 @@ public class SelectPageView extends NerdFlixApplication {
 	private static Stage stage;
 	private BorderPane root = new BorderPane();
 	
-	@FXML
 	private ObservableList<Filme> filmeItens = FXCollections.observableArrayList();
+
+	@FXML
+	private TilePane tile;
 	
 	@FXML
 	private ImageView filmeAtual;
@@ -82,14 +85,15 @@ public class SelectPageView extends NerdFlixApplication {
 			this.uploadBT.setVisible(true);
 		}
 		
-		Filme f = new Filme();
-		f.setTitulo("Teste");
-		f.setResolucao("HD");
-		f.setThumb(filmeAtual.getImage().impl_getUrl());
+		ImageView test = new ImageView("http://www.joshuacasper.com/contents/uploads/joshua-casper-samples-free.jpg");
 		
-		filmeAtual.setFitWidth(250);
+		test.setPreserveRatio(true);
+		test.setFitWidth(180);
+		
+		filmeAtual.setFitWidth(180);
 		filmeAtual.setPreserveRatio(true);
-		filmeItens.add(f);
+		
+		tile.getChildren().add(test);
 	}
 	
 	@FXML
@@ -106,10 +110,21 @@ public class SelectPageView extends NerdFlixApplication {
 	private void handleUploadButton(){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Videos File");
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb", "*.mkv"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Video Files", "*.avi", "*.mp4", "*.rmvb", "*.mkv"),
+				new ExtensionFilter("All Files", "*.*"));
 		 File selectedFile = fileChooser.showOpenDialog(stage);
 		 if (selectedFile != null) {
-			 JOptionPane.showMessageDialog(null, selectedFile.getName() + " - adicionado com sucesso!");
+//			 JOptionPane.showMessageDialog(null, selectedFile.getName() + " - adicionado com sucesso!");
+			 String formatar = selectedFile.getAbsolutePath();
+			 formatar = formatar.replace('\\', '/');
+			 
+			 formatar = new File(formatar).toURI().toString();
+			 ImageView novoFilme = new ImageView(formatar);
+				
+			 novoFilme.setPreserveRatio(true);
+			 novoFilme.setFitWidth(180);
+				
+			 tile.getChildren().add(novoFilme);
 		 }
 	}
 	
