@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -33,7 +34,12 @@ import persistence.dominio.Usuario;
 public class SelectPageView extends NerdFlixApplication {
 	private static Stage stage;
 	private BorderPane root = new BorderPane();
+	
+	@FXML
 	private ObservableList<Filme> filmeItens = FXCollections.observableArrayList();
+	
+	@FXML
+	private ImageView filmeAtual;
 
 	@FXML
 	private TextField pesquisaTextField;
@@ -75,6 +81,15 @@ public class SelectPageView extends NerdFlixApplication {
 		if (u.getLogin().equalsIgnoreCase("Admin")) {
 			this.uploadBT.setVisible(true);
 		}
+		
+		Filme f = new Filme();
+		f.setTitulo("Teste");
+		f.setResolucao("HD");
+		f.setThumb("sample-image.jpg");
+		
+		filmeAtual = new ImageView(f.getThumb());
+		filmeAtual.setVisible(true);
+//		filmeItens.add((Filme)filmeAtual);
 	}
 	
 	@FXML
@@ -103,6 +118,16 @@ public class SelectPageView extends NerdFlixApplication {
 		if(!this.pesquisaTextField.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Aplicar o filtro da pesquisa para: " + this.pesquisaTextField.getText());
 //			table.setItems(findItems());
+		}
+	}
+	
+	@FXML
+	private void handleSelecionarFilme(){
+		try {
+			new PlayerController().start(new Stage());
+			SelectPageView.stage.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

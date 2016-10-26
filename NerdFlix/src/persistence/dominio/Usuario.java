@@ -35,11 +35,11 @@ public class Usuario implements Serializable {
 	private String login;
 	private String senha;
 	
-	@ManyToMany
-    @JoinTable(name="Usuario_has_videos", joinColumns=
-    {@JoinColumn(name="id_Usuario")}, inverseJoinColumns=
-      {@JoinColumn(name="id_filme")})
-	private List<Filme> videosFavoritos;
+//	@ManyToMany
+//    @JoinTable(name="Usuario_has_videos", joinColumns=
+//    {@JoinColumn(name="id_Usuario")}, inverseJoinColumns=
+//      {@JoinColumn(name="id_filme")})
+//	private List<Filme> videosFavoritos;
 	
 	public int getId() {
 		return id;
@@ -68,10 +68,10 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public List<Filme> getFilmesFavoritos() {
-		return videosFavoritos;
-	}
-	public void setFilmesFavoritos(List<Filme> videosFavoritos) {
-		this.videosFavoritos = videosFavoritos;
-	}
+//	public List<Filme> getVideosFavoritos() {
+//		return videosFavoritos;
+//	}
+//	public void setVideosFavoritos(List<Filme> videosFavoritos) {
+//		this.videosFavoritos = videosFavoritos;
+//	}
 }

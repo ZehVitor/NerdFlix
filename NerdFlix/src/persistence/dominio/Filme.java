@@ -32,9 +32,11 @@ public class Filme implements Serializable {
 	private String resolucao;
 	private int duracao;
 	
-	@ManyToMany(mappedBy="filmesFavoritos")
-    private List<Filme> usuarios;
+	private String thumb;
 	
+//	@ManyToMany(mappedBy="videosFavoritos")
+//    private List<Filme> usuarios;
+
 	public int getId() {
 		return id;
 	}
@@ -71,11 +73,16 @@ public class Filme implements Serializable {
 	public void setDuracao(int duracao) {
 		this.duracao = duracao;
 	}
-	public List<Filme> getUsuarios() {
-		return usuarios;
+	public String getThumb() {
+		return thumb;
 	}
-	public void setUsuarios(List<Filme> usuarios) {
-		this.usuarios = usuarios;
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
 	}
-	
+//	public List<Filme> getUsuarios() {
+//		return usuarios;
+//	}
+//	public void setUsuarios(List<Filme> usuarios) {
+//		this.usuarios = usuarios;
+//	}
 }

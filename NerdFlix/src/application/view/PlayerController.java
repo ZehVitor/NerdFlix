@@ -4,7 +4,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import application.Player;
+import application.template.NerdFlixApplication;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -16,9 +19,12 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -29,7 +35,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class PlayerController implements Initializable{
+public class PlayerController extends NerdFlixApplication implements Initializable{
+	
+	private BorderPane root = new BorderPane();
+	
 	private MediaPlayer mp;
 	private Media me;
 	private boolean atEndOfMedia = false;
@@ -45,6 +54,8 @@ public class PlayerController implements Initializable{
 	@FXML private Button playButton;
 	@FXML private Label playTime;
 	@FXML private HBox mediaBar;
+
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		String path = new File("src/resources/big_buck_bunny.mp4").getAbsolutePath();
@@ -92,7 +103,7 @@ public class PlayerController implements Initializable{
 		  mp.setOnPaused(new Runnable() {
 	            public void run() {
 	                System.out.println("onPaused");
-	                playButton.setText("►");
+	                playButton.setText(">");
 	            }
 	        });
 		
@@ -107,7 +118,7 @@ public class PlayerController implements Initializable{
 	      mp.setOnEndOfMedia(new Runnable() {
 	            public void run() {
 	                if (!repeat) {
-	                    playButton.setText("►");
+	                    playButton.setText(">");
 	                    stopRequested = true;
 	                    atEndOfMedia = true;
 	                }
@@ -235,4 +246,29 @@ public class PlayerController implements Initializable{
 		            }
 		        }
 		    }
+	@Override
+	public void startEspecifico(Stage primaryStage) {
+		try {
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../css/player.css").toExternalForm());
+			primaryStage.setScene(scene);
+			stage = primaryStage;
+			initView();
+			
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initView() {
+    	try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/Player.fxml"));
+            BorderPane pageView = (BorderPane) loader.load();
+            root.setCenter(pageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
