@@ -85,11 +85,11 @@ public class SelectPageView extends NerdFlixApplication {
 		Filme f = new Filme();
 		f.setTitulo("Teste");
 		f.setResolucao("HD");
-		f.setThumb("sample-image.jpg");
+		f.setThumb(filmeAtual.getImage().impl_getUrl());
 		
-		filmeAtual = new ImageView(f.getThumb());
-		filmeAtual.setVisible(true);
-//		filmeItens.add((Filme)filmeAtual);
+		filmeAtual.setFitWidth(250);
+		filmeAtual.setPreserveRatio(true);
+		filmeItens.add(f);
 	}
 	
 	@FXML

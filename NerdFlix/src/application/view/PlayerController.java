@@ -18,6 +18,7 @@ import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,6 +34,7 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class PlayerController extends NerdFlixApplication implements Initializable{
@@ -102,7 +104,6 @@ public class PlayerController extends NerdFlixApplication implements Initializab
 		  
 		  mp.setOnPaused(new Runnable() {
 	            public void run() {
-	                System.out.println("onPaused");
 	                playButton.setText(">");
 	            }
 	        });
@@ -253,9 +254,21 @@ public class PlayerController extends NerdFlixApplication implements Initializab
 			scene.getStylesheets().add(getClass().getResource("../css/player.css").toExternalForm());
 			primaryStage.setScene(scene);
 			stage = primaryStage;
+			primaryStage.sizeToScene();
 			initView();
 			
 			stage.show();
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent t) {
+					try {
+						new SelectPageView().start(new Stage());
+						stage.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
