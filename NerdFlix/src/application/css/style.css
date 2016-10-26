@@ -2,15 +2,6 @@
     -fx-background-color: #1d1d1d;
 }
 
-@font-face {
-	font-family: "Graphique W01 Regular";
-	src: url("Graphique W01 Regular.ttf");
-}
-
-.nerdflix {
-	fx-font-family: "Graphique W01 Regular";
-	-fx-font-size: 48px;
-}
 
 .label {
     -fx-font-size: 11pt;
@@ -28,6 +19,17 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.bottombar {
+	
+    -fx-border-style: none;
+    -fx-border-radius: 6;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #d8d8d8;
+    /*-fx-background-insets: 0 0 0 0, 0, 1, 2;*/
 }
 
 .button:hover {
