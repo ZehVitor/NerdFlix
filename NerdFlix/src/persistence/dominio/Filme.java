@@ -1,6 +1,7 @@
 package persistence.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,6 +31,9 @@ public class Filme implements Serializable {
 	private String genero;
 	private String resolucao;
 	private int duracao;
+	
+	@ManyToMany(mappedBy="filmesFavoritos")
+    private List<Filme> usuarios;
 	
 	public int getId() {
 		return id;
@@ -65,6 +70,12 @@ public class Filme implements Serializable {
 	}
 	public void setDuracao(int duracao) {
 		this.duracao = duracao;
+	}
+	public List<Filme> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Filme> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 }

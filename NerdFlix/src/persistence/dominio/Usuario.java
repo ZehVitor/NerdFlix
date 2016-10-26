@@ -1,6 +1,7 @@
 package persistence.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 @Entity
 @Table(name="Usuario")
@@ -27,6 +34,12 @@ public class Usuario implements Serializable {
 	private String email;
 	private String login;
 	private String senha;
+	
+	@ManyToMany
+    @JoinTable(name="Usuario_has_videos", joinColumns=
+    {@JoinColumn(name="id_Usuario")}, inverseJoinColumns=
+      {@JoinColumn(name="id_filme")})
+	private List<Filme> videosFavoritos;
 	
 	public int getId() {
 		return id;
@@ -54,5 +67,11 @@ public class Usuario implements Serializable {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public List<Filme> getFilmesFavoritos() {
+		return videosFavoritos;
+	}
+	public void setFilmesFavoritos(List<Filme> videosFavoritos) {
+		this.videosFavoritos = videosFavoritos;
 	}
 }

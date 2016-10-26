@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Serie extends Filme{
 	 
 	private int episodio;
-	 private int temporada;
+	private int temporada;
 	 
 	public int getEpisodio() {
 		return episodio;
