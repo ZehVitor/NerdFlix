@@ -34,6 +34,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String login;
 	private String senha;
+	private int idade;
 	
 //	@ManyToMany
 //    @JoinTable(name="Usuario_has_videos", joinColumns=
@@ -67,6 +68,12 @@ public class Usuario implements Serializable {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public int getIdade() {
+		return idade;
+	}
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 //	public List<Filme> getVideosFavoritos() {
 //		return videosFavoritos;

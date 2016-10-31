@@ -3,6 +3,7 @@ package application;
 import javax.swing.JOptionPane;
 
 import application.template.NerdFlixApplication;
+import application.view.CadastroUsuarioController;
 import application.view.SelectPageView;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -40,6 +41,7 @@ public class Login extends NerdFlixApplication {
 	private PasswordField passwordInputBox;
 	private Button entrarButton;
 	private Button sairButton;
+	private Button cadastrarButton;
 	
 	private double WIDTH;
 	
@@ -93,8 +95,9 @@ public class Login extends NerdFlixApplication {
 		passwordInputBox = new PasswordField();
 		entrarButton = new Button("Entrar");
 		sairButton = new Button("Sair");
+		cadastrarButton = new Button("Cadastrar");
 		
-		anchorPane.getChildren().addAll(loginInputBox, passwordInputBox, entrarButton, sairButton);
+		anchorPane.getChildren().addAll(loginInputBox, passwordInputBox, entrarButton, sairButton, cadastrarButton);
 	}
 	
 	private void initLayout(){
@@ -115,6 +118,9 @@ public class Login extends NerdFlixApplication {
 
 		sairButton.setLayoutX(middleCordinates(sairButton.getWidth(), WIDTH));
 		sairButton.setLayoutY(200);
+		
+		cadastrarButton.setLayoutX(middleCordinates(cadastrarButton.getWidth(), WIDTH));
+		cadastrarButton.setLayoutY(250);
 	}
 	
 	private void initListeners(){
@@ -129,6 +135,18 @@ public class Login extends NerdFlixApplication {
 			@Override
 			public void handle(ActionEvent event) {
 				fecharAplicacao();
+			}
+		});
+		
+		this.cadastrarButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					new CadastroUsuarioController().start(new Stage());
+					Login.stage.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		

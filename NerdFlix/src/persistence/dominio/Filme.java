@@ -33,6 +33,7 @@ public class Filme implements Serializable {
 	private int duracao;
 	
 	private String thumb;
+	private String path;
 	
 //	@ManyToMany(mappedBy="videosFavoritos")
 //    private List<Filme> usuarios;
@@ -78,6 +79,12 @@ public class Filme implements Serializable {
 	}
 	public void setThumb(String thumb) {
 		this.thumb = thumb;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 //	public List<Filme> getUsuarios() {
 //		return usuarios;

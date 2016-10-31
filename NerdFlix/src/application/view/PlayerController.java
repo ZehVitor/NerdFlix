@@ -4,6 +4,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import org.hibernate.jpa.internal.QueryImpl.JpaPositionalParameterRegistrationImpl;
+
 import application.Main;
 import application.Player;
 import application.template.NerdFlixApplication;
@@ -47,6 +51,7 @@ public class PlayerController extends NerdFlixApplication implements Initializab
 	private boolean stopRequested = false;
 	private final boolean repeat = false;
 	private boolean isFS = false;
+	private static String videoPath;
 	private Duration duration;
 	//private Player player;
 	private Stage stage;
@@ -60,8 +65,15 @@ public class PlayerController extends NerdFlixApplication implements Initializab
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		String path = new File("src/resources/big_buck_bunny.mp4").getAbsolutePath();
-		me = new Media(new File(path).toURI().toString());
+//		String path = new File("src/resources/big_buck_bunny.mp4").getAbsolutePath();
+//		me = new Media(new File(path).toURI().toString());
+		try {
+			me = new Media(videoPath);	
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo. Verifique o caminho cadastrado.");
+			return;
+		}
+		
 		mp = new MediaPlayer(me);
 		mv.setMediaPlayer(mp);
 		mp.setAutoPlay(true);
@@ -284,4 +296,8 @@ public class PlayerController extends NerdFlixApplication implements Initializab
             e.printStackTrace();
         }
     }
+	
+	public void setParameters(String path){
+		videoPath = path;
+	}
 }
